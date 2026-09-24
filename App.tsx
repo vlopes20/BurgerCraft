@@ -1,6 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
-import { Image, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import BurgerCard from './components/BurgerCard';
+import ButtonPlus from './components/ButtonPlus';
+import ButtonCustom from './components/ButtonCustom';
 
 export default function App() {
   const [nameUser, setName] = useState('');
@@ -20,16 +25,7 @@ export default function App() {
       keyboardVerticalOffset={30}
     >
       <ScrollView>
-        <View style={styles.header}>
-          <View>
-            <Text style={styles.titleHeader}>Burger Craft</Text>
-            <Text style={styles.descriptionHeader}>Sabor artenasal de verdade</Text>
-          </View>
-            
-            <View style={styles.avatarPlaceholder}>
-              <Ionicons name='person' size={20} color={"#b69d91ff"}></Ionicons>
-            </View>
-        </View>
+        <Header />
 
         <View style={styles.sectionContent}>
           
@@ -51,11 +47,7 @@ export default function App() {
 
             <View style={styles.actionCard}>
               <Text style={styles.price}>R$ 34,90</Text>
-              <TouchableOpacity
-              style={styles.plusButton}
-              >
-                <Text style={styles.plusButtonText}>+</Text>
-              </TouchableOpacity>
+              <ButtonPlus />
             </View>
 
           </View>
@@ -63,41 +55,33 @@ export default function App() {
             <Text style={styles.menuTitle}>Nossos Burgers</Text>
 
             <View style={styles.menuContent}>
-              <View style={styles.cardItem}>
-                <Image source={require('./assets/ClassicBurger.png')} style={styles.imageItem}></Image>
-                <View style={styles.menuDescription}>
-                  <Text style={styles.cardTitle}>Classic Burger</Text>
-                  <Text style={styles.cardDescription}>Pão brioche, blend 160g e queijo prato</Text>
-                  <Text style={styles.cardPrice}>R$ 26,00</Text>
-                </View>
-              </View>
+              <BurgerCard 
+                image={require('./assets/ClassicBurger.png')}
+                name='Classic Burger'
+                description='Pão brioche, blend 160g e queijo prato'
+                price='26,00'
+              />
 
-              <View style={styles.cardItem}>
-                <Image source={require('./assets/BaconCrispy.png')} style={styles.imageItem}></Image>
-                <View style={styles.menuDescription}>
-                  <Text style={styles.cardTitle}>Bacon Crispy</Text>
-                  <Text style={styles.cardDescription}>Blend 160g com fatias crocantes de bacon</Text>
-                  <Text style={styles.cardPrice}>R$ 32,00</Text>
-                </View>
-              </View>
+              <BurgerCard 
+                image={require('./assets/BaconCrispy.png')}
+                name='Bacon Crispy'
+                description='Blend 160g com fatias crocantes de bacon'
+                price='32,00'
+              />
 
-              <View style={styles.cardItem}>
-                <Image source={require('./assets/ChickenCrunchy.png')} style={styles.imageItem}></Image>
-                <View style={styles.menuDescription}>
-                  <Text style={styles.cardTitle}>Chicken Crunchy</Text>
-                  <Text style={styles.cardDescription}>Frango empanado com maionese da casa</Text>
-                  <Text style={styles.cardPrice}>R$ 28,50</Text>
-                </View>
-              </View>
+              <BurgerCard 
+                image={require('./assets/ChickenCrunchy.png')}
+                name='Chicken Crunchy'
+                description='Frango empanado com maionese da casa'
+                price='28,50'
+              />
 
-              <View style={styles.cardItem}>
-                <Image source={require('./assets/VeggieGrill.png')} style={styles.imageItem}></Image>
-                <View style={styles.menuDescription}>
-                  <Text style={styles.cardTitle}>Veggie Grill</Text>
-                  <Text style={styles.cardDescription}>Hambúrguer de grão de bico e cogumelos</Text>
-                  <Text style={styles.cardPrice}>R$ 29,90</Text>
-                </View>
-              </View>
+              <BurgerCard 
+                image={require('./assets/VeggieGrill.png')}
+                name='Veggie Grill'
+                description='Hambúrguer de grão de bico e cogumelos'
+                price='29,90'
+              />
 
               <View style={styles.orderContent}>
                 <Text style={styles.orderTitle}>Como podemos te chamar?</Text>
@@ -109,18 +93,26 @@ export default function App() {
                   onChangeText={setName}
                   >
                 </TextInput>
-                <TouchableOpacity style={styles.orderButton} onPress={handleOrder}>
-                  <Text style={styles.orderButtonText}>Fazer meu pedido</Text>
-                </TouchableOpacity>
-                <View style={styles.backgroundMessage}>
-                  {message !== '' && <Text style={styles.messageText}>{message}</Text>}
-                </View>
+
+                <ButtonCustom title='Fazer meu pedido' onPress={handleOrder} />
+
+                {message !== '' && (
+                  <View style={styles.backgroundMessage}>
+                    <Ionicons
+                      name="checkmark-circle"
+                      size={20}
+                      color="#2e7d32"
+                    />
+
+                    <Text style={styles.messageText}>
+                      {message}
+                    </Text>
+                  </View>
+                )}
               </View>
             </View>
 
-            <View style={styles.footer}>
-              <Text style={styles.textFooter}>Burger Craft • Sabor artenasal de verdade</Text>
-            </View>
+            <Footer />
 
         </View>
       </ScrollView>
@@ -133,37 +125,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f8f9fa'
-  },
-  header: {
-    width: '100%',
-    height: 'auto',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingTop: 54,
-    paddingHorizontal: 24,
-    paddingBottom: 20
-  },
-  titleHeader: {
-    fontSize: 22,
-    fontWeight: '800',
-    color: '#1e1e1e',
-    marginBottom: 2,
-    fontFamily: 'Outfit'
-  },
-  descriptionHeader: {
-    fontSize: 12,
-    fontWeight: '500',
-    color: '#6c757d',
-    fontFamily: 'Inter'
-  },
-  avatarPlaceholder: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: "#f8f9fa",
-    justifyContent: "center",
-    alignItems: "center"
   },
   sectionContent: {
     paddingHorizontal: 24
@@ -247,19 +208,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Outfit',
     color: '#e65100'
   },
-  plusButton: {
-    backgroundColor: '#e65100',
-    width: 36,
-    height: 36,
-    borderRadius: 18
-  },
-  plusButtonText: {
-    textAlign: 'center',
-    justifyContent: 'center',
-    color: '#fff',
-    fontSize: 24,
-    fontWeight: '400'
-  },
   menuContent: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -272,48 +220,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Outfit',
     color: '#1e1e1e',
     marginTop: 16,
-  },
-  cardItem: {
-    width: '48%',
-    backgroundColor: '#ffffff',
-    borderRadius: 16,
-    padding: 0,
-    marginBottom: 16,
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.05,
-    elevation: 3
-  },
-  imageItem: {
-    width: '100%',
-    height: 110,
-    borderTopRightRadius: 16,
-    borderTopLeftRadius: 16,
-    marginBottom: 16
-  },
-  menuDescription: {
-    paddingHorizontal: 16
-  },
-  cardTitle: {
-    fontSize: 16,
-    fontWeight: '700',
-    fontFamily: 'Outfit',
-    color: '#1e1e1e',
-    marginBottom: 8
-  },
-  cardDescription: {
-    fontSize: 11,
-    fontWeight: '400',
-    fontFamily: 'Inter',
-    color: '#6c757d',
-    marginBottom: 8
-  },
-  cardPrice: {
-    fontSize: 15,
-    fontWeight: '700',
-    fontFamily: 'Outfit',
-    color: '#e65100',
-    marginBottom: 10
   },
   orderContent: {
     backgroundColor: '#fff',
@@ -347,50 +253,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     fontSize: 16
   },
-  orderButton: {
-    backgroundColor: '#e65100',
-    width: '100%',
-    borderRadius: 30,
-    paddingHorizontal: 30,
-    paddingVertical: 16,
-    alignItems: 'center',
-    marginTop: 20,
-  },
-  orderButtonText: {
-    textAlign: 'center',
-    justifyContent: 'center',
-    color: '#fff',
-    fontSize: 15,
-    fontWeight: '700'
-  },
   backgroundMessage: {
-    padding: 6,
     width: '100%',
-    height: 'auto',
+    height: 44,
     backgroundColor: '#e8f5e9',
     borderRadius: 12,
     marginTop: 12,
-  },
-  messageText: {
-    fontSize: 16,
-    fontWeight: '800',
-    color: '#2e7d32',
-    textAlign: 'center',
-    justifyContent: 'center',
-    marginTop: 20
-  },
-  footer: {
-    width: '100%',
-    padding: 20,
-    backgroundColor: '#f8f9fa',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBlock: 20
+    gap: 8,
   },
-  textFooter: {
-    fontSize: 11,
-    fontWeight: '500',
-    fontFamily: 'Inter',
-    color: '#6c757d',
-  }
+  messageText: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#2e7d32',
+  },
 });
