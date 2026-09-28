@@ -8,6 +8,7 @@ type BurgerCardProps = {
 };
 
 export default function BurgerCard({image, name, description, price}: BurgerCardProps) {
+  
     return (
         <View style={styles.cardItem}>
             <Image source={image} style={styles.imageItem}></Image>
@@ -44,22 +45,19 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 16,
-    fontWeight: '700',
-    fontFamily: 'Outfit',
+    fontFamily: 'OutfitBold',
     color: '#1e1e1e',
     marginBottom: 8
   },
   cardDescription: {
     fontSize: 11,
-    fontWeight: '400',
     fontFamily: 'Inter',
     color: '#6c757d',
     marginBottom: 8
   },
   cardPrice: {
     fontSize: 15,
-    fontWeight: '700',
-    fontFamily: 'Outfit',
+    fontFamily: 'OutfitBold',
     color: '#e65100',
     marginBottom: 10
   }

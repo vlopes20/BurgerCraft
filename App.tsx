@@ -6,10 +6,38 @@ import Footer from './components/Footer';
 import BurgerCard from './components/BurgerCard';
 import ButtonPlus from './components/ButtonPlus';
 import ButtonCustom from './components/ButtonCustom';
+import { useFonts } from 'expo-font';
+import {
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_600SemiBold,
+  Inter_700Bold,
+} from '@expo-google-fonts/inter';
+
+import {
+  Outfit_700Bold,
+  Outfit_800ExtraBold,
+} from '@expo-google-fonts/outfit';
 
 export default function App() {
+  
   const [nameUser, setName] = useState('');
   const [message, setMessage] = useState('');
+  
+  const [fontsLoaded] = useFonts({
+  Inter: Inter_400Regular,
+  InterMedium: Inter_500Medium,
+  InterSemiBold: Inter_600SemiBold,
+  InterBold: Inter_700Bold,
+
+  OutfitBold: Outfit_700Bold,
+  OutfitExtraBold: Outfit_800ExtraBold,
+});
+
+
+  if (!fontsLoaded) {
+  return null;
+}
 
   const handleOrder = () => {
     if (nameUser.trim() == '') {
@@ -134,14 +162,12 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 32,
-    fontWeight: '800',
-    fontFamily: 'Outfit',
+    fontFamily: 'OutfitExtraBold',
     color: '#1e1e1e',
     marginBottom: 8
   },
   sectionSubTitle: {
     fontSize: 15,
-    fontWeight: '400',
     fontFamily: 'Inter',
     color: '#6c757d',
     marginBottom: 12
@@ -171,26 +197,23 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: '#fff3e0',
     borderRadius: 12,
-    width: 120,
+    width: 130,
     height: 'auto',
     marginBottom: 8
   },
   popular: {
     fontSize: 11,
-    fontWeight: '700',
-    fontFamily: 'Inter',
+    fontFamily: 'InterBold',
     color: '#e65100',
     textAlign: 'center'
   },
   name: {
     fontSize: 22,
-    fontWeight: '800',
-    fontFamily: 'Outfit',
+    fontFamily: 'OutfitExtraBold',
     color: '#1e1e1e'
   },
   description: {
     fontSize: 13,
-    fontWeight: '400',
     fontFamily: 'Inter',
     color: '#6c757d',
     marginTop: 8,
@@ -204,8 +227,7 @@ const styles = StyleSheet.create({
   },
   price: {
     fontSize: 24,
-    fontWeight: '800',
-    fontFamily: 'Outfit',
+    fontFamily: 'OutfitExtraBold',
     color: '#e65100'
   },
   menuContent: {
@@ -216,8 +238,7 @@ const styles = StyleSheet.create({
   },
   menuTitle: {
     fontSize: 20,
-    fontWeight: '800',
-    fontFamily: 'Outfit',
+    fontFamily: 'OutfitExtraBold',
     color: '#1e1e1e',
     marginTop: 16,
   },
@@ -234,14 +255,12 @@ const styles = StyleSheet.create({
   },
   orderTitle: {
     fontSize: 18,
-    fontWeight: '800',
-    fontFamily: 'Outfit',
+    fontFamily: 'OutfitExtraBold',
     color: '#1e1e1e',
     marginBottom: 6
   },
   orderSubTitle: {
     fontSize: 12,
-    fontWeight: '400',
     fontFamily: 'Inter',
     color: '#6c757d',
     marginBottom: 16
@@ -251,7 +270,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#e9ecef',
     borderRadius: 16,
     paddingHorizontal: 20,
-    fontSize: 16
+    fontSize: 14,
+    fontFamily: 'InterMedium',
   },
   backgroundMessage: {
     width: '100%',
@@ -265,8 +285,8 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   messageText: {
-    fontSize: 14,
-    fontWeight: '700',
+    fontSize: 13,
+    fontFamily: 'InterSemiBold',
     color: '#2e7d32',
   },
 });

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 
 export default function Footer() {
+  
     return (
         <View style={styles.footer}>
             <Text style={styles.textFooter}>Burger Craft • Sabor artenasal de verdade</Text>
@@ -19,8 +20,7 @@ const styles = StyleSheet.create({
   },
   textFooter: {
     fontSize: 11,
-    fontWeight: '500',
-    fontFamily: 'Inter',
+    fontFamily: 'InterMedium',
     color: '#6c757d',
   }
 })

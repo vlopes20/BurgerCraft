@@ -6,6 +6,7 @@ type ButtonCustomProps = {
 }
 
 export default function ButtonCustom({title, onPress}: ButtonCustomProps) {
+    
     return (
         <TouchableOpacity style={styles.orderButton} onPress={onPress}>
             <Text style={styles.orderButtonText}>{title}</Text>
@@ -28,6 +29,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     color: '#fff',
     fontSize: 15,
-    fontWeight: '700'
+    fontFamily: 'InterBold'
   }
 })

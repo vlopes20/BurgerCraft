@@ -2,7 +2,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function Header() {
-    return (
+   
+  return (
         <View style={styles.header}>
             <View>
                 <Text style={styles.titleHeader}>Burger Craft</Text>
@@ -29,16 +30,14 @@ const styles = StyleSheet.create({
   },
   titleHeader: {
     fontSize: 22,
-    fontWeight: '800',
     color: '#1e1e1e',
     marginBottom: 2,
-    fontFamily: 'Outfit'
+    fontFamily: 'OutfitExtraBold'
   },
   descriptionHeader: {
     fontSize: 12,
-    fontWeight: '500',
     color: '#6c757d',
-    fontFamily: 'Inter'
+    fontFamily: 'InterMedium'
   },
   avatarPlaceholder: {
     width: 44,
